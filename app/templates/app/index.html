@@ -1,0 +1,49 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="heading">
+    <h1>{{ title }}</h1>
+    <div class="row">
+        <div class="col-sm border border-primary rounded mr-5">
+            <h1>Registration</h1>
+            <div class="form-group">
+                <form action="register/" method="POST">
+                    {% csrf_token %}              
+                    <label for="first_name">First Name:</label>
+                    <input type="text" class="form-control" id="first_name" name="p_fname" placeholder="First Name">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" class="form-control" id="last_name" name="p_lname" placeholder="Last Name">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" name="p_email" placeholder="Enter E-mail">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="p_pword" placeholder="Password">
+                    <label for="confirmpw">Confirm Password:</label>
+                    <input type="password" class="form-control" id="confirmpw" name="p_confirm" placeholder="Confirm Password">
+                    <input class="btn btn-danger btn-lg mt-3" type="submit" value="Register" />
+                </form>
+            </div>
+        </div>
+        <div class="col-sm border border-primary rounded">
+            <h1>Login</h1>
+            <div class="form-group">
+                <form action="login/" method="POST">
+                    {% csrf_token %}
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="login-email" placeholder="E-Mail">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" name="login-pw" placeholder="Password">
+                    <input class="btn btn-primary btn-lg mt-3" type="submit" value="Login" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

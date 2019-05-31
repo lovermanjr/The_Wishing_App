@@ -1,0 +1,18 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <h1>Welcome {{ request.session.first_name }}!  {{ title }}</h1>
+    </div>   
+    <div class="container mt-4">
+        <h1>Total wishes granted so far for all users: {{ all_granted_wishes }}</h1>
+        <br />
+        <br />
+        <h2>Your granted wishes: {{ your_granted_wishes }}</h2>
+        <br />
+        <h2>Your pending wishes: {{ your_pending_wishes }}</h2>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <h1>Welcome {{ request.session.first_name }}</h1>
+    </div>   
+    <div class="container mt-4">
+        <h1>My Wishes</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>Item</th>
+                <th>Date Added</th>
+                <th>Actions</th>
+            </tr>
+            {% for wish in mywishes %}
+            <tr>
+                <td>{{ wish.title }}</td>
+                <td>{{ wish.date_added }}</td>
+                <td>
+                    <a href="/wishes/remove/{{ wish.id }}">Remove</a> |
+                    <a href="/wishes/edit/{{ wish.id }}">Edit</a> |
+                    <a href="/wishes/granted/{{ wish.id }}">Granted</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h1>Granted Wishes</h1>
+        <table class="table table-bordered">
+            <tr>
+                <th>Item</th>
+                <th>Wisher</th>
+                <th>Date Added</th>
+                <th>Date Granted</th>
+                <th>Likes</th>
+                <th>Actions</th>
+            </tr>
+            {% for granted in grantedwishes %}
+            <tr>
+                <td>{{ granted.title }}</td>
+                <td>{{ granted.user }}</td>
+                <td>{{ granted.date_added }}</td>
+                <td>{{ granted.date_granted }}</td>
+                <td>{{ granted.likes }}</td>
+                <td>
+                    {% if not granted.user.id == request.session.userid %}
+                    <a href="/wishes/like/{{ granted.id }}">Like</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

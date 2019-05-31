@@ -1,0 +1,27 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row">
+        <h1>Welcome {{ name }}</h1>
+    </div>   
+    <div class="container mt-4">
+        <table class="table table-bordered">
+            <tr>
+                <th>Type</th>
+                <th>Actions</th>
+            </tr>
+            {% for type in types %}
+            <tr>
+                <td>{{ type.title }}</td>
+                <td>
+                    <a href="/type/edit/{{ type.id }}">Edit</a> |
+                    <a href="/type/remove/{{ type.id }}">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

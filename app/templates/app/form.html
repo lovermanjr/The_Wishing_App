@@ -1,0 +1,13 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+    <div class="form">
+        <form action="{{ action}}" method="post">
+            {% csrf_token %}
+            {{ regForm.as_p }}
+            <!--  ".as_p" is an example of an option you can attach to the form inputs
+            "as_table" and "as_ul" are a few others...-->
+            <button class="btn btn-primary btn-lg mt-6 t" type="submit">Submit</button>
+        </form>
+    </div>
+{% endblock %}
